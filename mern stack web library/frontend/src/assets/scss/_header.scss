@@ -1,0 +1,202 @@
+.header {
+          width: 100vw;
+          min-height: 60px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 30px;
+          padding-right: 50px;
+          background: var(--dark1);
+          z-index: 3;
+          position: fixed !important;
+          z-index: 100;
+          top: 0;
+
+          .left {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 30px;
+
+                    a {
+                              display: inline-flex;
+                              justify-content: center;
+                              align-items: center;
+
+                              img {
+                                        width: 20vw;
+                                        cursor: pointer;
+                                        user-select: none;
+                              }
+
+                    }
+
+                    label {
+                              #sidebar_btn {
+                                        z-index: 1;
+                                        color: #fff;
+                                        cursor: pointer;
+                                        font-size: 20px;
+                                        margin: 5px 0;
+                                        transition: 0.5s;
+                                        transition-property: color;
+                              }
+
+                              #sidebar_btn:hover {
+                                        color: #19B3D3;
+                              }
+                    }
+
+
+
+          }
+
+          .search-box-area {
+                    svg {
+                              position: relative;
+                              top: 3px;
+                              left: 25px;
+                    }
+
+                    input {
+                              outline: none;
+                              border: none;
+                              background: transparent;
+                              border-bottom: 3px solid var(--clr-red-dark);
+                              padding: 10px 34px;
+                              width: 400px;
+                              font-size: 15px;
+                    }
+
+          }
+
+          .right {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 30px;
+
+                    .profile-container {
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              height: 70px;
+
+                              h4 {
+                                        color: white;
+                                        margin-right: 20px;
+                                        font-weight: 700;
+                                        position: relative;
+                                        top: 6px;
+                                        transition: all 700ms ease-in-out;
+
+                                        &.menage {
+                                                  color: var(--clr-primary-5);
+                                                  border: 1px solid var(--clr-primary-5);
+                                                  padding: 12px 24px;
+                                                  border-radius: 25px;
+
+                                                  &:hover {
+                                                            color: var(--clr-primary-5)
+                                                  }
+
+                                        }
+
+                                        &:hover {
+                                                  color: red;
+                                                  cursor: pointer;
+                                        }
+
+                                        svg {
+                                                  top: 3px;
+                                        }
+                              }
+
+                              img {
+                                        width: 30px;
+                                        border-radius: 100%;
+                              }
+                    }
+          }
+
+
+}
+
+// ends header
+
+.mobile {
+          display: none;
+}
+
+@media screen and (max-width: 944px) {
+          .pc {
+                    display: none;
+          }
+
+          .mobile {
+                    display: flex;
+          }
+
+          .header {
+                    padding: 0 16px;
+
+                    .left {
+                              a {
+                                        img {
+                                                  width: 200px;
+                                        }
+                              }
+                    }
+
+                    .search-box-area {
+                              form {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+
+                                        .mobile {
+                                                  top: 0;
+                                                  top: 1px;
+                                                  font-size: 24px;
+                                        }
+
+                                        input {
+                                                  padding: 0px 50px;
+                                                  color: white;
+                                                  border: none;
+                                        }
+
+                                        svg {
+                                                  color: white;
+                                        }
+                              }
+
+                              display: flex;
+                              display: none;
+                    }
+
+                    .right {
+                              .profile-container {
+                                        .menage {
+                                                  display: none;
+                                        }
+
+                                        h4 {
+                                                  &.mobile-search-toggle {
+                                                            svg {
+                                                                      font-size: 24px;
+                                                            }
+                                                  }
+
+                                                  &.mobile{
+                                                            svg {
+                                                                      color: white;
+                                                                      font-size: 30px;
+                                                            }
+                                                  }
+                                        }
+                              }
+                    }
+                    
+          }
+}

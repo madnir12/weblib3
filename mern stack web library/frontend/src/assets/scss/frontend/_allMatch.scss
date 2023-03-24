@@ -1,0 +1,63 @@
+.container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+
+          .inner-container {
+                    width: 100%;
+                    padding: 10px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+
+                    .single-match-container {
+                              width: 400px;
+
+                              .book-row {
+                                        width: 400px;
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 20px;
+                                        cursor: pointer;
+
+                                        .img {
+                                                  img {
+                                                            width: 150px;
+                                                  }
+                                        }
+
+                                        .details {
+                                                  h4 {
+                                                            &.urdu-marker {
+                                                                      font-size: 24px;
+                                                            }
+
+                                                  }
+
+                                                  .profile {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            gap: 10px;
+
+                                                            img {
+                                                                      width: 30px;
+                                                                      border-radius: 100%;
+                                                            }
+
+                                                  }
+                                        }
+                              }
+                              .pages-container{
+                                        display: flex;
+                                        gap: 10px;
+                                        flex-direction: column;
+                              }
+
+
+
+
+                    }
+
+          }
+}
