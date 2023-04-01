@@ -6,7 +6,7 @@ const StatesContext = ({children}) => {
           const [bookContent, setBookContent] = useState([])
           const [mainPageSearchValue,setMainPageSearchValue] = useState("");
           useEffect(() => { // this use effect will get the all published books and store them into bookContent state
-                    axios(`${window.location.href.includes("weblib3") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book`).then((o)=>{setBookContent(o.data)})
+                    axios(`${!window.location.href.includes("localhost") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book`).then((o)=>{setBookContent(o.data)})
                     // getDocsInCollection("books_array", "visibility", "==", "public", setBookContent)
           }, [])
           // this oject contains all states variables

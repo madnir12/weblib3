@@ -9,7 +9,7 @@ const SingleBook = () => {
   const [singleBookData, setSingleBookData] = useState("")
   const [ready, setReady] = useState(false)
   useEffect(()=>{
-    axios(`${window.location.href.includes("weblib3") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/${location.pathname.split("/dashboard/mybook/")[1]}`).then((o)=>{setSingleBookData(o.data)})
+    axios(`${!window.location.href.includes("localhost") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/${location.pathname.split("/dashboard/mybook/")[1]}`).then((o)=>{setSingleBookData(o.data)})
     // getSingleDoc("books_array",location.pathname.split("/dashboard/mybook/")[1],setSingleBookData)
   },[])
   useEffect(()=>{

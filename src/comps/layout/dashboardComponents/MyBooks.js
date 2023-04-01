@@ -10,7 +10,7 @@ const MyBooks = ({ setter, singleBook }) => {
   const location = useLocation()
 
   useEffect(() => {
-    auth.currentUser !== null && axios(`${window.location.href.includes("weblib3") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/search/autherId/${auth.currentUser.uid}`).then((o)=>{
+    auth.currentUser !== null && axios(`${!window.location.href.includes("localhost") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/search/autherId/${auth.currentUser.uid}`).then((o)=>{
       setAdminContent(o.data)
       setReady(true)
     }).catch((err)=>{setReady(true)})
