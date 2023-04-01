@@ -49,7 +49,7 @@ export default function App() {
     <>
       <main>
       <StatesContext>
-      <Router>
+      <Router basename="/">
         <Routes>
 
           <Route path="/" element={<MainPage />} />
