@@ -43,13 +43,15 @@ jobs:
         with:
           node-version: 16
       - name: Installing project dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
       - name: Update Environement
         run: |
           rm .env
           cp env.prod .env
       - name: Building the project
         run: npm run build
+        env:
+          CI: false
       - name: compress the build
         run: zip -r dist.zip ./dist
       - name: Copy to prod server
