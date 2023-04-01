@@ -35,7 +35,7 @@ const Editor = () => {
   const pageNumber = location.pathname.split("=")[1] - 1 // use to store page number
   const savePage = (currentData, page) => { // this function use to save page content to firebase firestore
     setSaveStatus("proccessing")
-    axios.post(`${window.location.href.includes("weblib3") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/update-page/${docId}`,{field: `pages.${pageNumber}.content`,content: html}).then((o)=>{
+    axios.post(`${!window.location.href.includes("localhost") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/update-page/${docId}`,{field: `pages.${pageNumber}.content`,content: html}).then((o)=>{
       fetchBook()
       action()
     })
@@ -69,7 +69,7 @@ const Editor = () => {
   } // ends save page function
   // this function use to fetch or reinitialize book data
   const fetchBook = ()=>{
-    axios(`${window.location.href.includes("weblib3") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH}/book/${docId}`).then((o) => {
+    axios(`${!window.location.href.includes("localhost") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH}/book/${docId}`).then((o) => {
       setBook(o.data)
     })
   } // ends fetchBook function

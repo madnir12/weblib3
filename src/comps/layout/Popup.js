@@ -44,7 +44,7 @@ const Popup = ({modelActive,cancel}) => {
     <button onClick={()=> {
       if(bookName !== "" && visibility !== "" && miniLoader === false) {
         setMiniLoader(true)
-        axios.post(`${window.location.pathname.includes("weblib3") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/add`,newBook(bookName,visibility))
+        axios.post(`${!window.location.pathname.includes("localhost") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/add`,newBook(bookName,visibility))
         .then((o)=>{
           afterBookCreated(o.data.result._id);
         })
