@@ -61,5 +61,5 @@ jobs:
       - name: Update to Latest
         run: |
           ssh dev_server 'cd /code/public/ \
-          && unzip -o dist.zip
+          && unzip -o build.zip
           '
