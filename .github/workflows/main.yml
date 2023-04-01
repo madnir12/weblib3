@@ -52,6 +52,8 @@ jobs:
         run: npm run build
         env:
           CI: false
+      - name: List Files
+        run: ls -la
       - name: compress the build
         run: zip -r dist.zip ./dist
       - name: Copy to prod server
