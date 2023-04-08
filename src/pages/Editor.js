@@ -320,6 +320,15 @@ const Editor = () => {
                                   return y
                                 })}/></td>
                               </tr>
+                              {/* this span use to delete row */}
+                              <span
+                              onClick={()=> setHtml((y)=>{
+                                // this function remove a element and return new array
+                                y = [...html];
+                                y.splice(index,1)
+                                return y;
+                              })}
+                              >Delete</span> 
                             </tbody>
                           </>
                         }
