@@ -25,7 +25,7 @@ const Books = () => {
                     value=><>
                     <div className="books-container">
           {
-            value.bookContent.length > 0 ? value.bookContent.map((doc) => {
+            value.bookMetaContent.length > 0 ? value.bookMetaContent.map((doc) => {
               const { autherName,autherPhoto, name,bookCover,createdAt,pages,visibility,autherId,categories,otherUsers } = doc;
               // this code add all book from firebase to mongodb
               // axios.post("http://localhost:5000/book/add",{name,autherId,autherName,autherPhoto,visibility,otherUsers,categories,bookCover}).then((o)=>{

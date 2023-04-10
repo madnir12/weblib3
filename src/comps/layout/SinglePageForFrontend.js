@@ -6,7 +6,7 @@ import BtnByVerse2 from './verse-buttons/BtnByVerse2'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { share } from '../../assets/function'
 import SharePopup from './SharePopup'
-const SinglePageForFrontend = ({ pages, allPages, book }) => {
+const SinglePageForFrontend = ({ pages, allPages, book,setUrl,setBook }) => {
   const location = useLocation(),
     navigate = useNavigate(),
     pageNumber = +location.pathname.split("=")[1],
@@ -38,19 +38,37 @@ const SinglePageForFrontend = ({ pages, allPages, book }) => {
   // this function will change page index 
   const changeCurrentIndex = (event) => {
     event.preventDefault()
-    if (inputValue <= allPages.length) {
+    if (inputValue <= pages) {
+      setBook(null);
+      setUrl((y)=>{
+        y = location.pathname.split("book/")[1].split("=");
+        y[1] = inputValue;
+        return y;
+      })
       navigate(newLocation())
     }
   } // ends change current index
   const incrementPageNumber = () => {// this will handle next page functionality
-    if (pageNumber < allPages.length) {
+    if (pageNumber < pages) {
       setInputValue(pageNumber + 1)
+      setBook(null);
+      setUrl((y)=>{
+        y = location.pathname.split("book/")[1].split("=");
+        y[1] = +y[1]+1;
+        return y;
+      })
       navigate(newLocation("+"))
     }
   } // ends incrementPageNumber method
   const decrementPageNumber = () => {// this will handle prev page functionality
     if (pageNumber > 1) {
       setInputValue(pageNumber - 1)
+      setBook(null);
+      setUrl((y)=>{
+        y = location.pathname.split("book/")[1].split("=");
+        y[1] = +y[1]-1;
+        return y;
+      })
       navigate(newLocation("-"))
     }
   } // ends decrementPageNumber method
@@ -58,7 +76,6 @@ const SinglePageForFrontend = ({ pages, allPages, book }) => {
     window.print()
   } // ends handlePrint function
   const handleKeyDown = (event)=>{
-   console.log("event fired")
     if (event.key === 'ArrowRight') {
         incrementPageNumber();
       } else if (event.key === 'ArrowLeft') {
@@ -101,15 +118,15 @@ const SinglePageForFrontend = ({ pages, allPages, book }) => {
           </div>
           <div className="page-div-container">
         {
-          allPages[pageNumber-1].pageType === "content page" ? <div className="page"
+          allPages[0].pageType === "content page" ? <div className="page"
           dangerouslySetInnerHTML={{
-            __html: allPages[pageNumber-1].content,
+            __html: allPages[0].content,
           }}
           >
             
           </div> : <div className="page">
             {
-              allPages[pageNumber-1].content.map((doc,index)=>{
+              allPages[0].content.map((doc,index)=>{
                 return <>
                   <table>
                     {
@@ -120,7 +137,13 @@ const SinglePageForFrontend = ({ pages, allPages, book }) => {
                       </tr>
                     </thead> : <tbody>
                        <tr onClick={()=>{
-                        if(doc.second < allPages.length){
+                        if(doc.second < pages){
+                          setBook(null);
+      setUrl((y)=>{
+        y = location.pathname.split("book/")[1].split("=");
+        y[1] = doc.second;
+        return y;
+      })
                           navigate(`/book/${bookId}=${doc.second}`);
                         }
                        }}>

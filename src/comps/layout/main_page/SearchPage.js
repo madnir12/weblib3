@@ -22,7 +22,7 @@ function SearchPage() {
             <div className="container right-after-header">
               <div className="inner-container">
                 {
-                  contentArray.length === 0 ? <h4>Not Found</h4> : contentArray.map(item => {
+                  value.bookContent.length === 0 ? <h4>Searching...</h4> : contentArray.length === 0 ? <h4>Not Found</h4> : contentArray.map(item => {
                     return <AllMatch item={item} query={query} />
                   })
                 }
