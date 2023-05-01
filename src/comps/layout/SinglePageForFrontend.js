@@ -119,12 +119,6 @@ const SinglePageForFrontend = ({ pages, allPages, book,setUrl,setBook }) => {
                     </thead> : <tbody>
                        <tr onClick={()=>{
                         if(doc.second < pages){
-                          setBook(null);
-      setUrl((y)=>{
-        y = location.pathname.split("book/")[1].split("=");
-        y[1] = doc.second;
-        return y;
-      })
                           navigate(`/book/${bookId}=${doc.second}`);
                         }
                        }}>
