@@ -6,7 +6,7 @@ import BtnByVerse2 from './verse-buttons/BtnByVerse2'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { share } from '../../assets/function'
 import SharePopup from './SharePopup'
-const SinglePageForFrontend = ({ pages, allPages, book,setUrl,setBook }) => {
+const SinglePageForFrontend = ({ pages, allPages, book }) => {
   const location = useLocation(),
     navigate = useNavigate(),
     pageNumber = +location.pathname.split("=")[1],
@@ -119,6 +119,7 @@ const SinglePageForFrontend = ({ pages, allPages, book,setUrl,setBook }) => {
                     </thead> : <tbody>
                        <tr onClick={()=>{
                         if(doc.second < pages){
+                          setInputValue(doc.second);
                           navigate(`/book/${bookId}=${doc.second}`);
                         }
                        }}>
