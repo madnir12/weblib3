@@ -1,199 +1,191 @@
-.single-page{
-          .book-title{
-                    padding: 0 30px;
-                    padding-top: 10px;
-                    color: var(--clr-black);
-                    
+.single-page {
+  .book-title {
+    padding: 0 30px;
+    padding-top: 10px;
+    color: var(--clr-black);
+  }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .search-pages {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      input {
+        background: lightgray;
+        border: none;
+        outline: none;
+        border-bottom: 2px solid var(--primary-2);
+        padding: 0 10px;
+        width: 80px;
+        text-align: center;
+      }
+    }
+    .navigate {
+      span {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin-right: 30px;
+        position: relative;
+        margin-top: 3px;
+        svg {
+          font-size: 26px;
+        }
+      }
+    }
+    .buttons {
+      display: inline-flex;
+      gap: 20px;
+      align-items: center;
+      .inline-center {
+        .share {
+          cursor: pointer;
+        }
+      }
+      .edit-button {
+        cursor: pointer;
+        font-weight: 700;
+        font-style: bold;
+        font-size: 17px;
+        letter-spacing: 1px;
+        svg {
+          position: relative;
+          top: 2px;
+          margin-right: 6px;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+  .frontend {
+    .top-bar {
+      padding: 0 30px;
+      padding-bottom: 20px;
+    }
+  }
+  .page-div-container {
+    background: lightgray;
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    .page {
+      background: white;
+      width: 500px;
+      min-height: 600px;
+      padding: 40px 30px;
+      overflow: scroll;
+      outline: none;
+      direction: rtl;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        thead {
+          tr {
+            display: grid;
+            grid-template-columns: 7fr 1fr;
+            th {
+              background-color: var(--clr-primary-10);
+              color: var(--clr-black);
+              padding: 6px 0;
+              input {
+                background-color: transparent;
+                border: transparent;
+                outline: transparent;
+                text-align: center;
+                width: 100%;
+                font-size: 25px;
+              }
+              &:not(:has(input)) {
+                font-size: 25px;
+              }
+            }
           }
-          .top-bar{
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 20px 30px;
-                    span{
-                              display: inline-flex;
-                              justify-content: center;
-                              align-items: center;
-                    }
-                    .search-pages{
-                              display: inline-flex;
-                              gap: 10px;
-                              align-items: center;
-                              input{
-                                        background: lightgray;
-                                        border: none;
-                                        outline: none;
-                                        border-bottom: 2px solid var(--primary-2);
-                                        padding: 0 10px;
-                                        width: 80px;
-                                        text-align: center;
-                              }
-                    }
-                    .navigate{
-                              span{
-                                        display: inline-flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                        cursor: pointer;
-                                        margin-right: 30px;
-                                        position: relative;
-                                        margin-top: 3px;
-                                        svg{
-                                                  font-size: 26px;
-                                        }
-                              }
-                    }
-                    .buttons{
-                              display: inline-flex;
-                              gap: 20px;
-                              align-items: center;
-                              .inline-center{
-                                        .share{
-                                                  cursor: pointer;
-                                        }
-                              }
-                              .edit-button{
-                                        cursor: pointer;
-                                        font-weight: 700;
-                                        font-style: bold;
-                                        font-size: 17px;
-                                        letter-spacing: 1px;
-                                        svg{
-                                                  position: relative;
-                                                  top: 2px;
-                                                  margin-right: 6px;
-                                                  font-size: 17px;
-                                        }
-                              }
-
-                    }
+        }
+        tbody {
+          tr {
+            cursor: pointer !important;
+            display: grid;
+            grid-template-columns: 7fr 1fr;
+            td {
+              padding: 5px 0;
+              border-bottom: 1px solid var(--clr-primary-10);
+              input {
+                width: 100%;
+                background-color: transparent;
+                border: transparent;
+                outline: transparent;
+                font-size: 17px;
+                padding-right: 10px;
+              }
+              &:not(:has(input)) {
+                font-size: 17px;
+                padding-right: 10px;
+                cursor: pointer;
+              }
+            }
           }
-          .frontend{
-                    .top-bar{
-                              padding: 0 30px;
-                              padding-bottom: 20px;
-                    }
+          span {
+            cursor: pointer;
+            font-size: 15px;
+            color: rgb(246, 124, 124);
+            padding-left: 10px;
           }
-          .page-div-container{
-                    background: lightgray;
-                    width: 100%;
-                    min-height: 500px;
-                    display: flex;
-                    justify-content: center;
-                    padding: 20px;
-                    .page{
-                              background: white;
-                              width: 500px;
-                              min-height: 600px;
-                              padding: 40px 30px;
-                              overflow: scroll;
-                              outline: none;
-                              direction: rtl;
-                              &::-webkit-scrollbar{
-                                        display: none;
-
-                              }
-                              table{
-                                        width: 100%;
-                                        border-collapse: collapse;
-                                        thead{
-                                          tr{
-                                            display: grid;
-                                            grid-template-columns: 390px 50px;
-                                            th{
-                                              background-color: var(--clr-primary-10);
-                                              color: var(--clr-black);
-                                              padding: 6px 0;
-                                              input{
-                                                  background-color: transparent;
-                                                  border: transparent;
-                                                  outline: transparent;
-                                                  text-align: center;
-                                                  width: 100%;
-                                                  font-size: 25px;
-                                              }
-                                              &:not(:has(input)){
-                                                font-size: 25px;
-                                              }
-                                            }
-                                          }
-                                        }
-                                        tbody{
-                                          tr{
-                                            cursor: pointer !important;
-                                            display: grid;
-                                            grid-template-columns: 390px 50px;
-                                            td{
-                                              padding: 5px 0;
-                                              border-bottom: 1px solid var(--clr-primary-10);
-                                              input{
-                                                  width: 100%;
-                                                  background-color: transparent;
-                                                  border: transparent;
-                                                  outline: transparent;
-                                                  font-size: 17px;
-                                                  padding-right: 10px;
-                                              }
-                                              &:not(:has(input)) {
-                                                  font-size: 17px;
-                                                  padding-right: 10px;
-                                                  cursor: pointer;
-                                              }
-                                            }
-                                          }
-                                          span{
-                                            cursor: pointer;
-                                            font-size: 15px;
-                                            color: rgb(246, 124, 124);
-                                            padding-left: 10px;
-                                          }
-                                        }
-                              }
-                              .add-table-field{
-                                background-color: var(--clr-primary-10);
-                                margin-top: 10px;
-                                cursor: pointer;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                padding: 10px 0;
-                                gap: 10px;
-                                svg{
-                                  color: var(--clr-black);
-
-                                }
-
-                              }
-                    }
-          }
+        }
+      }
+      .add-table-field {
+        background-color: var(--clr-primary-10);
+        margin-top: 10px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        gap: 10px;
+        svg {
+          color: var(--clr-black);
+        }
+      }
+    }
+  }
 }
 @media screen and (max-width: 944px) {
-          .single-page{
-                    .frontend{
-                              .top-bar{
-                                        padding: 20px 10px;
-                              }
-                    }
-          }
-          
+  .single-page {
+    .frontend {
+      .top-bar {
+        padding: 20px 10px;
+      }
+    }
+  }
 }
 @media screen and (max-width: 406px) {
-          .single-page{
-                    .frontend{
-                              .top-bar{
-                                        padding: 20px 5px;
-                                        .search-pages{
-                                                  input{
-                                                            width: 60px;
-                                                  }
-                                        }
-                                        .navigate{
-                                                  span{
-                                                            margin-right: 10px;
-                                                  }
-                                        }
-                                       
-                              }
-                    }
+  .single-page {
+    .frontend {
+      .top-bar {
+        padding: 20px 5px;
+        .search-pages {
+          input {
+            width: 60px;
           }
-          
+        }
+        .navigate {
+          span {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
 }
