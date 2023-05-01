@@ -1,38 +1,56 @@
-.admin-books-container{
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          padding: 30px;
-          align-items: center;
-          gap: 20px;
-          .book{
-                    width: 300px;
-                    border-radius: 6px;
-                    background-color: var(--clr-primary-4);
-                    padding: 10px;
-                    .left{
-                              display: flex;
-                              align-items: center;
-                              gap: 10px;
-                              img{
-                                        height: 60px;
-                              }
-                              div{
-                                        width: 100%;
-                                        h4{
-                                                  margin: 5px;
-                                                  color: var(--clr-white);
-                                                  &.download{
-                                                            cursor: pointer;
-                                                            font-family: var(--roboto);
-                                                            svg{
-                                                                      position: relative;
-                                                                      top: 2px;
-                                                            }
-                                                  }
-                                        }
-                              }
-                              
-                    }
+.admin-books-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 30px;
+  align-items: center;
+  gap: 20px;
+  .book {
+    width: 100%;
+    border-radius: 6px;
+    background-color: var(--clr-primary-10);
+    border-bottom: 3px solid var(--clr-primary-9);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .info {
+      display: grid;
+      grid-template-columns: 70px 1fr 1fr;
+      align-items: center;
+      gap: 30px;
+      span{
+          color: aliceblue;
+          font-weight: 700;
+          font-style: bold;
+      }
+      img{
+          height: 60px;
+      }
+      
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h4 {
+        margin: 5px;
+        color: var(--clr-white);
+        &.download {
+          cursor: pointer;
+          font-family: var(--roboto);
+          svg {
+            position: relative;
+            top: 2px;
           }
+        }
+      }
+      span{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+  }
 }

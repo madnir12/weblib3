@@ -15,7 +15,6 @@ const SinglePageForFrontend = ({ pages, allPages, book,setUrl,setBook }) => {
     [inputValue, setInputValue] = useState(pageNumber),
     [vw, setVw] = useState(window.innerWidth),
     url = window.location.href;
-
   useEffect(() => {
     document.addEventListener("resize", updateVw())
 
@@ -39,38 +38,20 @@ const SinglePageForFrontend = ({ pages, allPages, book,setUrl,setBook }) => {
   const changeCurrentIndex = (event) => {
     event.preventDefault()
     if (inputValue <= pages) {
-      setBook(null);
-      setUrl((y)=>{
-        y = location.pathname.split("book/")[1].split("=");
-        y[1] = inputValue;
-        return y;
-      })
       navigate(newLocation())
     }
   } // ends change current index
   const incrementPageNumber = () => {// this will handle next page functionality
     if (pageNumber < pages) {
       setInputValue(pageNumber + 1)
-      setBook(null);
-      setUrl((y)=>{
-        y = location.pathname.split("book/")[1].split("=");
-        y[1] = +y[1]+1;
-        return y;
-      })
       navigate(newLocation("+"))
     }
   } // ends incrementPageNumber method
   const decrementPageNumber = () => {// this will handle prev page functionality
     if (pageNumber > 1) {
       setInputValue(pageNumber - 1)
-      setBook(null);
-      setUrl((y)=>{
-        y = location.pathname.split("book/")[1].split("=");
-        y[1] = +y[1]-1;
-        return y;
-      })
       navigate(newLocation("-"))
-    }
+    } // ends if
   } // ends decrementPageNumber method
   const handlePrint = () => { // this function eill use to print page
     window.print()
@@ -118,15 +99,15 @@ const SinglePageForFrontend = ({ pages, allPages, book,setUrl,setBook }) => {
           </div>
           <div className="page-div-container">
         {
-          allPages[0].pageType === "content page" ? <div className="page"
+          allPages[pageNumber-1].pageType === "content page" ? <div className="page"
           dangerouslySetInnerHTML={{
-            __html: allPages[0].content,
+            __html: allPages[pageNumber-1].content,
           }}
           >
             
           </div> : <div className="page">
             {
-              allPages[0].content.map((doc,index)=>{
+              allPages[pageNumber-1].content.map((doc,index)=>{
                 return <>
                   <table>
                     {

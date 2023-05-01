@@ -1,7 +1,20 @@
 import React from "react";
 import $ from "jquery";
+import axios from 'axios'
 import { updateDocField } from "./config/firebase";
-
+const basicUrl = !window.location.href.includes("localhost")
+  ? process.env.REACT_APP_HOST_PATH
+  : process.env.REACT_APP_LOCAL_PATH;
+  // this function will get single doc and return it
+  export const getSingleDoc = async (id) => {
+    try {
+      const response = await axios(`${basicUrl}/book/search/_id/${id}`);
+      return response.data[0];
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
 // this function takes an array and return table which
 export const createTable = (data)=>{
   // Create the table element and its header row
@@ -45,11 +58,13 @@ export const createTable = (data)=>{
   return table;
 } // ends createTable function
 // this function will use to backup firebase book collection in a file
-export const downloadFile = (myData)=>{
+export const downloadFile = async (myData)=>{
   // Define the file content
-const data = myData;
+const data = await myData;
 // Convert the data to a JSON string
+console.log(data);
 const json = JSON.stringify(data);
+console.log(json);
 
 // Create a Blob object from the JSON string
 const blob = new Blob([json], { type: 'application/json' });
@@ -176,6 +191,18 @@ export const keepSelection = (element) => {
   let text = textArea[0].value.substring(start, end)
 
 } // ends keepSelection function
+// this function will controle onContextMenu action
+export function handleOnContextMenu(event) {
+  event.preventDefault();
+  var menu = $(".context-menu-container");
+  menu.css({
+    display: "block",
+    top: event.pageY + "px",
+    left: (event.pageX - 100) + "px",
+    padding: "20px",
+  });
+  menu.focus()
+} // ends handleOncontextmenu method
 export function onContextMenu(event) {
   event.preventDefault();
   var menu = $("#contextMenu");
