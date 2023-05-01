@@ -1,90 +1,94 @@
-.share-container{
-          span{
-                    position: relative;
-                    top: 2px;
+.share-container {
+  span {
+    position: relative;
+    top: 2px;
+  }
+  .share-bc {
+    cursor: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: var(--black-transparent);
+    z-index: 101;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transition: all 1s ease-in-out;
+    &.hide {
+      height: 0;
+      width: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .share-popup {
+      border-radius: 5px;
+      background-color: var(--clr-white);
+      width: 500px;
+      max-width: calc(100vw - 40px);
+      height: 300px;
+      padding: 20px;
+      .top {
+
+          display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .close {
+          cursor: pointer;
+        }
+        h4 {
+          font-size: 18px;
+        }
+      }
+      .share-button-container {
+        display: flex;
+        padding: 10px;
+        justify-content: left;
+        align-items: center;
+        gap: 20px;
+        .share-button {
+          button {
+            background-color: transparent;
+            border-color: transparent;
+            cursor: pointer;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            svg {
+              font-size: 40px;
+            }
+            span {
+              font-size: 14px;
+            }
           }
-          .share-bc{
-                    cursor: auto;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: fixed;
-                    background: var(--black-transparent);
-                    z-index: 101;
-                    width: 100vw;
-                    height: 100vh;
-                    top: 0;
-                    left: 0;
-                    transition: all 1s ease-in-out;
-                    &.hide{
-                              height: 0;
-                              width: 0;
-                              padding: 0;
-                              overflow: hidden;
-                    }
-                    .share-popup{
-                              border-radius: 5px;
-                              background-color: var(--clr-white);
-                              width: 500px;
-                              height: 300px;
-                              padding: 20px;
-                              .top{
-                                        display: flex;
-                                        justify-content: space-between;
-                                        align-items: center;
-                                        .close{
-                                                  cursor: pointer;
-                                        }
-                                        h4{
-                                                  font-size: 18px;
-                                        }
-                              }
-                              .share-button-container{
-                                        display: flex;
-                                        padding: 10px;
-                                        justify-content: left;
-                                        align-items: center;
-                                        gap: 20px;
-                                        .share-button{
-                                                  button{
-                                                            background-color: transparent;
-                                                            border-color: transparent;
-                                                            cursor: pointer;
-                                                            display: inline-flex;
-                                                            flex-direction: column;
-                                                            justify-content: center;
-                                                            align-items: center;
-                                                            gap: 10px;
-                                                            svg{
-                                                                      font-size: 40px;
-                                                            }
-                                                            span{
-                                                                      font-size: 14px;
-                                                            }
-                                                  }
-                                                  
-                                        }
-                              }
-                              h5{
-                                        margin-top: 10px;
-                              }
-                              .link-container{
-                                        padding: 10px 0;
-                                        p{
-                                                  border: 2px solid var(--clr-primary-5);
-                                                  padding: 4px 8px;
-                                        }
-                                        button{
-                                                  background-color: var(--clr-primary-5);
-                                                  border: none;
-                                                  border-radius: 25px;
-                                                  width: 100%;
-                                                  text-align: center;
-                                                  padding: 12px 30px;
-                                                  cursor: pointer;
-                                                  color: var(--clr-white);
-                                        }
-                              }
-                    }
-          }
+        }
+      }
+      h5 {
+        margin-top: 10px;
+      }
+      .link-container {
+        padding: 10px 0;
+        p {
+          border: 2px solid var(--clr-primary-5);
+          padding: 4px 8px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        button {
+          background-color: var(--clr-primary-5);
+          border: none;
+          border-radius: 25px;
+          width: 100%;
+          text-align: center;
+          padding: 12px 30px;
+          cursor: pointer;
+          color: var(--clr-white);
+        }
+      }
+    }
+  }
 }
