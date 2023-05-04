@@ -30,8 +30,8 @@ const SingleBook = () => {
           categories.map((item)=> item)
           }</span>
       </div>
-       
     </div>
+       <span className=' text-blue-500 '>Edit Details</span>
     <SinglePage pages={pages.length} allPages={pages}/>
     </>
   )
