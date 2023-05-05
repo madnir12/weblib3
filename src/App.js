@@ -11,6 +11,7 @@ import StatesContext  from "./context/StatesContext";
 import Book from './comps/layout/main_page/Book'
 import SearchPage from "./comps/layout/main_page/SearchPage";
 import BottomBar from "./comps/layout/BottomBar";
+import EditDetails from "./comps/layout/dashboardComponents/mybookComps/EditDetails";
 import AdminControls from "./comps/layout/dashboardComponents/AdminControls";
 export default function App() {
   // all protected routes will store in this array
@@ -35,6 +36,16 @@ export default function App() {
       LMT: MyBooks
     }
   ], // ends dshboard_routes array
+  MYBOOKS_ROUTES = [
+    {
+      path: "/dashboard/mybook/b/*",
+      LMT: <SingleBook/>,
+    },
+    {
+      path: "/dashboard/mybook/e/*",
+      LMT: <EditDetails/>,
+    },
+  ],
   MAINPAGE_ROUTES = [
     {
       path: "/search/*",
@@ -68,7 +79,9 @@ export default function App() {
               {
                 DASHBOARD_ROUTES.map((item) => {
                   return <Route path={item.path} element={<item.LMT />}>
-                    item.LMT === MyBooks && <Route path="/dashboard/mybook/*" element={<SingleBook />} />
+                    {
+                    item.LMT === MyBooks && MYBOOKS_ROUTES.map(item => <Route path={item.path} element={item.LMT} />)
+                }
                   </Route>
                 })
 
@@ -80,6 +93,7 @@ export default function App() {
 
         </Routes>
       <BottomBar/>
+      
       </Router>
       </StatesContext>
       </main>

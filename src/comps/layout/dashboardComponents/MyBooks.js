@@ -29,7 +29,7 @@ const MyBooks = ({ setter, singleBook }) => {
               <div className="bookRaw">
                 <img src={bookCover} alt="" />
                 <div className="bookData">
-                  <Link to={`/dashboard/mybook/${doc._id}`}><h4 className='urdu'>{name}</h4></Link>
+                  <Link to={`/dashboard/mybook/b/${doc._id}`}><h4 className='urdu'>{name}</h4></Link>
                   <span className='text-secodary'> Added At: {new Date(createdAt).toDateString()} </span>
                 </div>
               </div>
