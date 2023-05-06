@@ -3,7 +3,7 @@ import axios from 'axios';
 export const updateDocField = (docId,fields,afterAction)=>{
     axios.post(`${window.location.href.includes("weblib3") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/update-fields/${docId}`,fields)
 .then((o)=>{
-    afterAction()
+    afterAction(o)
 }) // ends then
 .catch((err)=>{
     console.log(err);

@@ -4,18 +4,21 @@ import { getSingleDoc } from "../../../../assets/config/firebase";
 import SinglePage from "./SinglePage";
 import axios from "axios";
 import { BiEdit } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 import { timeSince } from "../../../../assets/function";
 const SingleBook = () => {
   const location = useLocation();
   const [singleBookData, setSingleBookData] = useState("");
   const [ready, setReady] = useState(false);
+  const navigate = useNavigate();
+  const id = location.pathname.split("/dashboard/mybook/b/")[1];
   useEffect(() => {
     axios(
       `${
         !window.location.href.includes("localhost")
           ? process.env.REACT_APP_HOST_PATH
           : process.env.REACT_APP_LOCAL_PATH
-      }/book/${location.pathname.split("/dashboard/mybook/b/")[1]}`
+      }/book/${id}`
     ).then((o) => {
       setSingleBookData(o.data);
     });
@@ -55,7 +58,9 @@ const SingleBook = () => {
           className=" flex items-ce
         justify-center"
         >
-          <span className=" flex gap-2 items-center cursor-pointer"
+          <span 
+          onClick={()=> navigate(`/dashboard/mybook/e/${id}`)}
+          className=" flex gap-2 items-center cursor-pointer"
           ><BiEdit/> Edit Details</span>
         </div>
         <SinglePage pages={pages.length} allPages={pages} />

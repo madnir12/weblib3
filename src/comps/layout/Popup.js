@@ -28,7 +28,7 @@ const Popup = ({modelActive,cancel}) => {
     setVisibility("")
         setBookName("")
         cancel(false) // this will hide popup
-        navigate(`/dashboard/mybook/${id}`)
+        navigate(`/dashboard/mybook/b/${id}`)
   } // ends afterbookcreated method
   return (
 <div className={modelActive ? "model-background show" : "model-background hide"}>

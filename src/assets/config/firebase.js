@@ -5,6 +5,7 @@ import { signOut, updateProfile, signInWithPopup, GoogleAuthProvider, getAuth } 
 import { getAnalytics } from "firebase/analytics";
 import { getDoc, collection, addDoc, getFirestore, doc, setDoc, query, where, getDocs, arrayRemove,updateDoc, onSnapshot } from "firebase/firestore";
 import { MdPrivateConnectivity } from "react-icons/md";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,7 +15,8 @@ const firebaseConfig = {
   apiKey: "AIzaSyA-u4wg4zaaUXRcU1u4JScumTULz-dGXKM",
   authDomain: "web-library-abfd7.firebaseapp.com",
   projectId: "web-library-abfd7",
-  storageBucket: "web-library-abfd7.appspot.com",
+  storageBucket: "gs://web-library-abfd7.appspot.com",
+  // storageBucket: "web-library-abfd7.appspot.com",
   messagingSenderId: "82374180136",
   appId: "1:82374180136:web:d60e833ad334381144e41d",
   measurementId: "G-3JZWR7RE93"
@@ -25,6 +27,10 @@ export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+// Get a reference to the storage service, which is used to create references in your storage bucket
+const storage = getStorage();
+// Create a storage reference from our storage service
+const bookCoversRef = ref(storage,"bookCovers");
 // ---------- Functions -----------
 export const signinWidthGoogle = () => {
   const provider = new GoogleAuthProvider(app);
@@ -167,4 +173,14 @@ export const updateDocField = (collectionName,docID,docWantsToAdd,{action})=>{
      
 } // ends add in arry method
 // -----x----- firestore -----------
+// ---------- storage ----------
+export const uploadImageFile = (fileName,file,action)=>{
+  const fullRef = ref(bookCoversRef,fileName);
+  uploadBytes(fullRef, file).then((snapshot) => {
+    action(snapshot);
+  }).catch((err)=>{
+    console.log(err);
+  });
+} // ends uploadImageFile
+// -----x----- storage ----------
 // -----x----- Functions ----------
