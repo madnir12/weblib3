@@ -113,7 +113,7 @@
         border-radius: 25px;
         letter-spacing: 2px;
         width: 170px;
-        display: inline-flex;
+        display: inline-flex !important;
         justify-content: center;
         align-items: center;
 
@@ -147,7 +147,7 @@
           button {
             background-color: transparent;
             text-align: left;
-            display: block;
+            display: flex;
             width: 100%;
             border: none;
             font-size: 18px;

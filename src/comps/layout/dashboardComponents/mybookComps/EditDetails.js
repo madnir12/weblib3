@@ -69,12 +69,13 @@ const EditDetails = () => {
     // }
   }, // ends handleImageSelection function 
   handleSaveDetails = (action)=>{
-    updateDocField(id,{
+    let obj = {
       name: details.name,
-      bookCover: details.bookCover,
+      bookCover: details.image,
       visibility: details.visibility,
       categories: details.categories
-    },action)
+    }
+    updateDocField(id,obj,action)
   };
   return (
     details !== null && (

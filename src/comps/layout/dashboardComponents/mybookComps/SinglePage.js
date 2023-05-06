@@ -12,7 +12,7 @@ const SinglePage = ({ pages,allPages }) => {
   const [inputValue, setInputValue] = useState(1)
   const navigate = useNavigate()
   const location = useLocation()
-  const docId = location.pathname.split("/dashboard/mybook/")[1] // to get doc id
+  const docId = location.pathname.split("/dashboard/mybook/b/")[1] // to get doc id
 
   
   // this function parform all steps to create a new page
