@@ -52,10 +52,11 @@
           }
 
           .search-box-area {
+                    display: flex !important;
                     svg {
                               position: relative;
-                              top: 3px;
-                              left: 25px;
+                              top: 30px !important;
+                              left: 10px;
                     }
 
                     input {
