@@ -3,13 +3,14 @@ import { getDownloadURL } from "firebase/storage";
 import { updateDocField } from "../../../../assets/backEndFunctions";
 import { uploadImageFile, auth } from "../../../../assets/config/firebase";
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IoMdCloudUpload } from "react-icons/io";
 import axios from "axios";
 const EditDetails = () => {
   const [details, setDetails] = useState(null),
     [inputValue, setInputValue] = useState(""),
     [contentChanged, setContentChanged] = useState(false),
+    navigate = useNavigate(),
     location = useLocation(),
     id = location.pathname.split("/dashboard/mybook/e/")[1];
   useEffect(() => {
@@ -20,15 +21,18 @@ const EditDetails = () => {
           : process.env.REACT_APP_LOCAL_PATH
       }/book/${id}`
     ).then((o) => {
-      setDetails(
-        (y) =>
-          (y = {
-            image: o.data.bookCover,
-            name: o.data.name,
-            visibility: o.data.visibility,
-            categories: o.data.categories,
-          })
-      );
+      if (o.data.autherId !== auth.currentUser.uid) {
+        navigate("/dashboard/mybook");
+      } else
+        setDetails(
+          (y) =>
+            (y = {
+              image: o.data.bookCover,
+              name: o.data.name,
+              visibility: o.data.visibility,
+              categories: o.data.categories,
+            })
+        );
     });
     // getSingleDoc("books_array",location.pathname.split("/dashboard/mybook/")[1],setSingleBookData)
   }, []);
@@ -76,13 +80,13 @@ const EditDetails = () => {
         const category = inputValue.trim();
 
         if (category && !details.categories.includes(category)) {
-          setDetails((y)=>{
-            let newData = {...y};
-            if(!details.categories.includes(category)){
+          setDetails((y) => {
+            let newData = { ...y };
+            if (!details.categories.includes(category)) {
               newData.categories.push(category);
             }
             return newData;
-          }) // ends setDetails
+          }); // ends setDetails
           setInputValue("");
         }
       }
@@ -135,27 +139,38 @@ const EditDetails = () => {
         </div>
         <div className="px-1 pb-2 flex mt-10 flex-col border-b-2 border-blue-500 border-solid">
           <label htmlFor="">Categories</label>
-            <div className="flex flex-wrap gap-2">
-          {
-              details.categories.map((category,index)=>{
-              return <span className="mr-2 rounded-full bg-slate-300 px-4 py-1" key={index}>{category}<span className="ml-4 cursor-pointer" onClick={()=>{
-                setDetails((y)=>{
-                  let newData = {...y};
-                  newData.categories.splice(index,1);
-                  return newData;
-                })
-              }}>x</span></span>
-            })
-          }
-          <input
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleInputKeyDown}
-            className="outline-none bg-transparent border-none min-w-3"
-            type="text"
-            placeholder="Press ',' to separate"
-          />
-            </div>
+          <div className="flex flex-wrap gap-2">
+            {details.categories.map((category, index) => {
+              return (
+                <span
+                  className="mr-2 rounded-full bg-slate-300 px-4 py-1"
+                  key={index}
+                >
+                  {category}
+                  <span
+                    className="ml-4 cursor-pointer"
+                    onClick={() => {
+                      setDetails((y) => {
+                        let newData = { ...y };
+                        newData.categories.splice(index, 1);
+                        return newData;
+                      });
+                    }}
+                  >
+                    x
+                  </span>
+                </span>
+              );
+            })}
+            <input
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleInputKeyDown}
+              className="outline-none bg-transparent border-none min-w-3"
+              type="text"
+              placeholder="Press ',' to separate"
+            />
+          </div>
         </div>
         <button
           onClick={() => {

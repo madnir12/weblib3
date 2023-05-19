@@ -13,6 +13,7 @@ import SearchPage from "./comps/layout/main_page/SearchPage";
 import BottomBar from "./comps/layout/BottomBar";
 import EditDetails from "./comps/layout/dashboardComponents/mybookComps/EditDetails";
 import AdminControls from "./comps/layout/dashboardComponents/AdminControls";
+import Setting from "./comps/layout/dashboardComponents/Setting";
 export default function App() {
   // all protected routes will store in this array
   const PROTECTED_ROUTES = [
@@ -34,7 +35,11 @@ export default function App() {
     {
       path: "/dashboard/mybook",
       LMT: MyBooks
-    }
+    },
+    {
+      path: "/dashboard/setting",
+      LMT: Setting
+    },
   ], // ends dshboard_routes array
   MYBOOKS_ROUTES = [
     {

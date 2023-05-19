@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getSingleDoc } from "../../../../assets/config/firebase";
+import { auth, getSingleDoc } from "../../../../assets/config/firebase";
 import SinglePage from "./SinglePage";
 import axios from "axios";
 import { BiEdit } from "react-icons/bi";
@@ -20,6 +20,9 @@ const SingleBook = () => {
           : process.env.REACT_APP_LOCAL_PATH
       }/book/${id}`
     ).then((o) => {
+      if(auth.currentUser.uid !== o.data.autherId){
+        navigate("/dashboard/mybook")
+      } else
       setSingleBookData(o.data);
     });
     // getSingleDoc("books_array",location.pathname.split("/dashboard/mybook/")[1],setSingleBookData)

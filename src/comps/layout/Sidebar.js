@@ -21,7 +21,7 @@ const Sidebar = ({userName,userPhoto}) => {
     {
       text: "Setting",
       icon: "fas fa-sliders-h",
-      action: "a"
+      action: "/dashboard/setting"
     },
     {
       text: "About",
