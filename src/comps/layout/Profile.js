@@ -7,6 +7,7 @@ const Profile = ({userName,userPhoto,userEmail}) => {
   const navigate = useNavigate(null)
   const [profileDisplay, setProfileDisplay] = useState(false)
   const location = useLocation(); // this will help us to get the loation
+  console.log(userPhoto)
   return (
           <div className="profile-container">
         

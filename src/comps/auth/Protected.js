@@ -1,12 +1,13 @@
 import React,{useEffect,useState} from 'react';
 import PreLoader from './PreLoader';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {app} from '../../assets/config/firebase'
 
 function Protected({LMT}) {
   const navigate = useNavigate()
   const [isLogin, setIsLogin] = useState("checking")
+  const location = useLocation();
   const auth = getAuth(app);
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
@@ -20,7 +21,7 @@ function Protected({LMT}) {
     });
   },[])
   useEffect(() => {
-    isLogin === false ? navigate("/login") : console.log("")
+    isLogin === false ? navigate("/login",{state: {from: location.pathname}}) : console.log("")
 
   },[isLogin])
   

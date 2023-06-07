@@ -20,7 +20,7 @@
       align-items: center;
       gap: 30px;
       span{
-          color: aliceblue;
+          color: var(--clr-black);
           font-weight: 700;
           font-style: bold;
       }
@@ -34,14 +34,16 @@
       justify-content: center;
       align-items: center;
       h4 {
+        display: flex;
+        gap: 5px;
         margin: 5px;
-        color: var(--clr-white);
+        color: var(--clr-black);
         &.download {
           cursor: pointer;
           font-family: var(--roboto);
           svg {
             position: relative;
-            top: 2px;
+            top: -1px;
           }
         }
       }

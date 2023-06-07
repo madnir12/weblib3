@@ -17,7 +17,8 @@ const SinglePage = ({ pages,allPages }) => {
   
   // this function parform all steps to create a new page
   const createNewPage = ()=>{
-    axios.post(`${window.location.href.includes("weblib3") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/add-page/${docId}`,{pageNumber: pages+1}).then((o)=>{navigate(`/editor/${docId}/page=${pages+1}`)})
+    axios.post(`${window.location.href.includes("haqnawaz") ? process.env.REACT_APP_HOST_PATH : process.env.REACT_APP_LOCAL_PATH }/book/add-custom-page/${docId}`,{pageNumber: pages+1,content: ""}).then((o)=>{navigate(`/editor/${docId}/page=${pages+1}`)}).catch((error)=>{console.log(error)
+    })
     // const obj = {
     //   "pages": arrayUnion({
     //     visibility: "private",

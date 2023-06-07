@@ -1,9 +1,27 @@
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { signOut, updateProfile, signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
+import {
+  signOut,
+  updateProfile,
+  signInWithPopup,
+  GoogleAuthProvider,
+  getAuth,
+} from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import { getDoc, collection, addDoc, getFirestore, doc, setDoc, query, where, getDocs, arrayRemove,updateDoc, onSnapshot } from "firebase/firestore";
+import {
+  getDoc,
+  collection,
+  addDoc,
+  getFirestore,
+  doc,
+  setDoc,
+  query,
+  where,
+  getDocs,
+  arrayRemove,
+  updateDoc,
+  onSnapshot,
+} from "firebase/firestore";
 import { MdPrivateConnectivity } from "react-icons/md";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,7 +37,7 @@ const firebaseConfig = {
   // storageBucket: "web-library-abfd7.appspot.com",
   messagingSenderId: "82374180136",
   appId: "1:82374180136:web:d60e833ad334381144e41d",
-  measurementId: "G-3JZWR7RE93"
+  measurementId: "G-3JZWR7RE93",
 };
 
 // Initialize Firebase
@@ -30,7 +48,7 @@ export const auth = getAuth(app);
 // Get a reference to the storage service, which is used to create references in your storage bucket
 const storage = getStorage();
 // Create a storage reference from our storage service
-const bookCoversRef = ref(storage,"bookCovers");
+const bookCoversRef = ref(storage, "bookCovers");
 // ---------- Functions -----------
 export const signinWidthGoogle = () => {
   const provider = new GoogleAuthProvider(app);
@@ -50,25 +68,31 @@ export const signinWidthGoogle = () => {
         emailVR: user.emailVerified,
         phoneNumber: user.phoneNumber,
         country: "null",
-        city: "null"
+        city: "null",
+      };
+      getSingleDoc("users", getProfile().profileID, (data) => {
+        if (data !== "No such document!") {
+          console.log(data);
+        } else {
+          setNewDoc("users", getProfile().profileID, myObj);
+        }
+      });
 
-
-      }
-      setNewDoc("users", getProfile().profileID, myObj)
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorMessage)
+      console.log(errorMessage);
       // The email of the user's account used.
       const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
-}
-// geting user profile 
+};
+// geting user profile
 export const getProfile = () => {
   const loginUser = auth.currentUser;
   if (loginUser !== null) {
@@ -77,7 +101,6 @@ export const getProfile = () => {
     const email = loginUser.email;
     const photoURL = loginUser.photoURL;
     const emailVerified = loginUser.emailVerified;
-
 
     // The user's ID, unique to the Firebase project. Do NOT use
     // this value to authenticate with your backend server, if
@@ -88,99 +111,133 @@ export const getProfile = () => {
       profilePhoto: photoURL,
       profileEmail: email,
       profileVR: emailVerified,
-      profileID: uid
-    }
+      profileID: uid,
+    };
   }
-
-}
-// ends geting user profile 
+};
+// ends geting user profile
 // this function will update user profile to initial user detail, name will be user profile image will be blanck profile image
 export const updateProfileToInitialValues = () => {
-
   updateProfile(auth.currentUser, {
     displayName: "none",
-    photoURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCvIQEdbJs-ZGwXXa5GRQqd8qDGlQaUEaolA&usqp=CAU"
-  }).then(() => {
-
-  }).catch((error) => {
-
-    // An error occurred
-    // ...
-  });
-
-} // ends fuction to update inithal user profile
+    photoURL:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCvIQEdbJs-ZGwXXa5GRQqd8qDGlQaUEaolA&usqp=CAU",
+  })
+    .then(() => {})
+    .catch((error) => {
+      // An error occurred
+      // ...
+    });
+}; // ends fuction to update inithal user profile
+// this function will use to login with email and password user
+export const handleLogin = (email,password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      // const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      setErrorDisplay(true)
+    });
+} // ends handle login
 // this function will use to logout user
 export const handleLogout = () => {
-  signOut(auth).then(() => {
-  }).catch((error) => {
-    // An error happened.
-  });
-} // ends handle logout method
+  signOut(auth)
+    .then(() => {})
+    .catch((error) => {
+      // An error happened.
+    });
+}; // ends handle logout method
 // ----------- firestore -----------
-export const createNewCollection = async (collectionName, docObject) => { // this method will create new collection in firstore,first parameter use as collection name and second use as document
+export const createNewCollection = async (collectionName, docObject) => {
+  // this method will create new collection in firstore,first parameter use as collection name and second use as document
   try {
     const docRef = await addDoc(collection(db, collectionName), docObject);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
-} // ends method create new collection
-export const setNewDoc = async (collection, docName, docOject) => { // function use to set a new doc in firestore
+}; // ends method create new collection
+export const setNewDoc = async (collection, docName, docOject) => {
+  // function use to set a new doc in firestore
   await setDoc(doc(db, collection, docName), docOject);
-  console.log("created successfull")
-} // ends setNewDoc
-export const getSingleDoc = async (collection, docName, setState) => { // this method use to get a single doc from firestore
+  console.log("created successfull");
+}; // ends setNewDoc
+export const getSingleDoc = async (collection, docName, setState) => {
+  // this method use to get a single doc from firestore
   const docRef = doc(db, collection, docName);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-    setState(docSnap.data())
+    setState(docSnap.data());
   } else {
     // doc.data() will be undefined in this case
     setState("No such document!");
   }
-}
-export const addNewDoc = async (collectionName, docObj,after) => {
+};
+export const addNewDoc = async (collectionName, docObj, after) => {
   try {
     await addDoc(collection(db, collectionName), docObj);
-    after()
-  } catch (e) {
-
-  }
-} // endws adddoc method
-export const getDocsInCollection = (collectionName, keyName, conditionalOperator, valueName, setter) => {
+    after();
+  } catch (e) {}
+}; // endws adddoc method
+export const getDocsInCollection = (
+  collectionName,
+  keyName,
+  conditionalOperator,
+  valueName,
+  setter
+) => {
   try {
-    const q = query(collection(db, collectionName), where(keyName, conditionalOperator, valueName));
+    const q = query(
+      collection(db, collectionName),
+      where(keyName, conditionalOperator, valueName)
+    );
     onSnapshot(q, (querySnapshot) => {
       setter(querySnapshot.docs.map((doc) => doc));
-    })
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-} // ends getDocsInCollection method
-export const updateDocField = (collectionName,docID,docWantsToAdd,{action})=>{
+}; // ends getDocsInCollection method
+// this function will use to gget complete collection
+export const getCollection = async (collectionName,setter) => {
+  try {
+    onSnapshot(collection(db, collectionName), (querySnapshot) => {
+      setter(querySnapshot.docs);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}; // ends get collection function
+export const updateDocField = (
+  collectionName,
+  docID,
+  docWantsToAdd,
+  { action }
+) => {
   const docRef = doc(db, collectionName, docID);
 
-      //Atomically add a new region to the "regions" array field.
-        try{
-          updateDoc(docRef,docWantsToAdd).then((responce)=>{
-            action()
-          })
-        }catch (error) {
-          
-        }
-        
-     
-     
-} // ends add in arry method
+  //Atomically add a new region to the "regions" array field.
+  try {
+    updateDoc(docRef, docWantsToAdd).then((responce) => {
+      action();
+    });
+  } catch (error) {}
+}; // ends add in arry method
 // -----x----- firestore -----------
 // ---------- storage ----------
-export const uploadImageFile = (fileName,file,action)=>{
-  const fullRef = ref(bookCoversRef,fileName);
-  uploadBytes(fullRef, file).then((snapshot) => {
-    action(snapshot);
-  }).catch((err)=>{
-    console.log(err);
-  });
-} // ends uploadImageFile
+export const uploadImageFile = (fileName, file, action) => {
+  const fullRef = ref(bookCoversRef, fileName);
+  uploadBytes(fullRef, file)
+    .then((snapshot) => {
+      action(snapshot);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}; // ends uploadImageFile
 // -----x----- storage ----------
 // -----x----- Functions ----------

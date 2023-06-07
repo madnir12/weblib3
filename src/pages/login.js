@@ -1,5 +1,5 @@
 import { FcGoogle } from 'react-icons/fc'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import PreLoader from '../comps/auth/PreLoader'
@@ -13,6 +13,8 @@ function Login() {
   const [isLogin, setIsLogin] = useState("checking")
   const [errorDisplay, setErrorDisplay] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation();
+  
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -36,7 +38,14 @@ function Login() {
       }
     });
   }, [])
-  if (isLogin === true) { navigate("/") }
+  if (isLogin === true) { 
+    if (location.state && location.state.from) {
+      navigate(location.state.from);
+    } else {
+      // Navigate to a default route
+      navigate('/');
+    }
+   }
   else if (isLogin === false) {
     return (
       <div className="background">
