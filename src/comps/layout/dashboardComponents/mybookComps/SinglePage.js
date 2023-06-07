@@ -7,6 +7,7 @@ import {useLocation,useNavigate} from 'react-router-dom'
 import { increment,arrayUnion, setLogLevel} from 'firebase/firestore'
 import axios from 'axios';
 import {AiOutlineEdit} from 'react-icons/ai'
+// ...
 const SinglePage = ({ pages,allPages }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [inputValue, setInputValue] = useState(1)
