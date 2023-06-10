@@ -4,6 +4,7 @@ import {
   signOut,
   updateProfile,
   signInWithPopup,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   getAuth,
 } from "firebase/auth";
@@ -130,18 +131,21 @@ export const updateProfileToInitialValues = () => {
     });
 }; // ends fuction to update inithal user profile
 // this function will use to login with email and password user
-export const handleLogin = (email,password) => {
+export const handleLogin = (email,password,callBack) => {
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then((response) => {
       // Signed in 
       // const user = userCredential.user;
-      // ...
+      let error = null;
+      callBack(resnse,error);
     })
     .catch((error) => {
       // const errorCode = error.code;
       // const errorMessage = error.message;
-      setErrorDisplay(true)
+      let response = null;
+      callBack(response,error)
     });
+
 } // ends handle login
 // this function will use to logout user
 export const handleLogout = () => {
