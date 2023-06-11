@@ -1,9 +1,9 @@
-import {GrUndo} from 'react-icons/gr'
+// import {GrUndo} from 'react-icons/gr'
 import {BsFillInfoSquareFill,BsTypeBold} from 'react-icons/bs'
 import {BiItalic} from 'react-icons/bi'
 import {FaUnderline} from 'react-icons/fa'
 import {
-    AiFillContacts,AiFillDashboard,AiFillHome,AiOutlineAlignCenter, AiOutlineAlignLeft, AiOutlineAlignRight, AiOutlineUnorderedList} from 'react-icons/ai'
+    AiFillContacts,AiFillDashboard,AiFillHome,AiOutlineAlignCenter, AiOutlineAlignLeft, AiOutlineAlignRight} from 'react-icons/ai'
 import {BsJustify} from 'react-icons/bs'
 
 export const shareOptions = [

@@ -18,12 +18,9 @@ import {
   setDoc,
   query,
   where,
-  getDocs,
-  arrayRemove,
   updateDoc,
   onSnapshot,
 } from "firebase/firestore";
-import { MdPrivateConnectivity } from "react-icons/md";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -58,7 +55,7 @@ export const signinWidthGoogle = () => {
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+      // const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
       let myObj = {
@@ -83,13 +80,13 @@ export const signinWidthGoogle = () => {
     })
     .catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
+      // const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorMessage);
       // The email of the user's account used.
-      const email = error.customData.email;
+      // const email = error.customData.email;
       // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
+      // const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
 };
